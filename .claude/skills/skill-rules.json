@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "description": "Skill activation triggers for Claude Code. Controls when skills automatically suggest or block actions.",
+  "skills": {
+    "skill-developer": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "critical",
+      "description": "Meta-skill for creating and managing Claude Code skills",
+      "promptTriggers": {
+        "keywords": ["skill", "umiejętność", "stwórz skill", "nowy skill", "create skill"],
+        "intentPatterns": ["skill.*creat", "creat.*skill", "dodaj.*skill", "nowa.*umiejętność"]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          ".claude/skills/**/*.md"
+        ]
+      }
+    },
+    "tailwind-react-guidelines": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "medium",
+      "description": "React + Tailwind CSS development guidelines for landing pages and frontend components",
+      "promptTriggers": {
+        "keywords": ["component", "komponent", "react", "tailwind", "styling", "css", "frontend", "strona", "landing", "sekcja"],
+        "intentPatterns": ["styl.*komponent", "react.*pattern", "tailwind.*class", "landing.*page", "tworzenie.*strony"]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          "src/**/*.tsx",
+          "src/**/*.ts",
+          "src/**/*.css"
+        ]
+      }
+    },
+    "ux-ui-guidelines": {
+      "type": "domain",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "UX/UI design guidelines with Playwright visual audit workflow. Covers visual hierarchy, typography, accessibility, user feedback states, and content presentation.",
+      "promptTriggers": {
+        "keywords": [
+          "UX", "UI", "user experience", "design", "layout", "visual hierarchy",
+          "typography", "accessibility", "a11y", "WCAG", "ARIA",
+          "empty state", "loading state", "error state", "feedback",
+          "mobile UX", "touch", "responsive", "whitespace", "spacing",
+          "contrast", "color scheme", "form UX", "usability", "user friendly",
+          "audit", "screenshot", "review design", "przejrzystość", "czytelność",
+          "hierarchia", "dostępność", "doświadczenie użytkownika"
+        ],
+        "intentPatterns": [
+          "(design|zaprojektuj|stwórz).*?(page|stronę|screen|widok|layout|interface|UI)",
+          "(improve|popraw|fix|napraw).*?(UX|UI|user experience|usability|layout)",
+          "(present|display|show|pokaż|prezentuj).*?(content|data|treść|dane)",
+          "(add|dodaj|create|stwórz).*?(empty|loading|error|success).*?state",
+          "(make|ensure|zrób).*?(accessible|a11y|WCAG|dostępn)",
+          "(audit|audyt|review|przejrzyj).*?(design|stronę|UI|UX)",
+          "(screenshot|zrzut).*?(analiz|review|audit)"
+        ]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          "src/**/*.tsx",
+          "src/pages/**/*",
+          "src/components/**/*"
+        ]
+      }
+    }
+  },
+  "notes": {
+    "enforcement_types": {
+      "suggest": "Skill suggestion appears but doesn't block execution",
+      "block": "Requires skill to be used before proceeding (guardrail)",
+      "warn": "Shows warning but allows proceeding"
+    },
+    "priority_levels": {
+      "critical": "Highest - Always trigger when matched",
+      "high": "Important - Trigger for most matches",
+      "medium": "Moderate - Trigger for clear matches",
+      "low": "Optional - Trigger only for explicit matches"
+    }
+  }
+}
