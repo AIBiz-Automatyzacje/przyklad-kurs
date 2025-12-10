@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { Card } from '../../../components/ui'
 import { VideoPlayer } from './VideoPlayer'
 import { ComparisonTable } from './ComparisonTable'
 
@@ -44,24 +43,11 @@ export function ExampleCard({
 
       {/* Visual */}
       <div className={reversed ? 'lg:order-1' : ''}>
-        <Card variant="dark" hover={false} className="p-4">
-          {/* Workflow screenshot */}
-          <div className="mb-4 rounded-lg overflow-hidden">
-            <img
-              src={`/src/assets/images/${image}`}
-              alt={`Workflow: ${title}`}
-              loading="lazy"
-              className="w-full h-auto"
-            />
-          </div>
-
-          {/* Video player */}
-          <VideoPlayer
-            thumbnailSrc={`/src/assets/images/${image}`}
-            videoUrl={videoUrl}
-            title={title}
-          />
-        </Card>
+        <VideoPlayer
+          thumbnailSrc={`/src/assets/images/${image}`}
+          videoUrl={videoUrl}
+          title={title}
+        />
       </div>
     </motion.div>
   )

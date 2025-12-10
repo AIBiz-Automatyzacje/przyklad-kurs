@@ -1,17 +1,12 @@
 import { motion } from 'framer-motion'
 import { ArrowDown } from '@phosphor-icons/react'
-import { Badge } from '../../../components/ui'
+import { Badge, Highlight, HeroHighlight } from '../../../components/ui'
 import { Container } from '../../../components/layout'
 import { Particles } from '../../../components/effects'
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg-dark">
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
-
-      {/* Grid pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+    <HeroHighlight containerClassName="overflow-hidden">
 
       {/* Particles */}
       <Particles />
@@ -41,9 +36,11 @@ export function Hero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-[length:var(--font-size-hero)] font-bold leading-[1.1] tracking-tight mb-6"
           >
-            <span className="text-gradient">
-              Zautomatyzuj powtarzalne zadania.
-            </span>
+            <span className="text-gradient">Zautomatyzuj</span>{' '}
+            <Highlight className="text-white">
+              powtarzalne zadania
+            </Highlight>
+            <span className="text-gradient">.</span>
             <br />
             <span className="text-accent">
               Skup się na tym, co naprawdę rozwija Twój biznes.
@@ -58,8 +55,8 @@ export function Hero() {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="text-lg md:text-xl text-text-muted max-w-2xl mx-auto mb-10"
           >
-            Bez kodowania. Bez limitu automatyzacji. Odzyskaj kilkanaście godzin
-            miesięcznie.
+            Bez kodowania. Integracja aplikacji i synchronizacja danych w jednym
+            narzędziu. Odzyskaj kilkanaście godzin miesięcznie.
           </motion.p>
 
           {/* CTA */}
@@ -76,24 +73,24 @@ export function Hero() {
               <ArrowDown size={20} className="animate-bounce" />
             </a>
           </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="mt-20 flex justify-center"
+          >
+            <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-1 h-2 bg-accent rounded-full"
+              />
+            </div>
+          </motion.div>
         </motion.div>
       </Container>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-1 h-2 bg-accent rounded-full"
-          />
-        </div>
-      </motion.div>
-    </section>
+    </HeroHighlight>
   )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, PaperPlaneTilt, Sparkle, CheckCircle, XCircle } from '@phosphor-icons/react'
+import { X, PaperPlaneTilt, CheckCircle, XCircle } from '@phosphor-icons/react'
 import { Button, Input } from '../../../components/ui'
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
@@ -112,11 +112,6 @@ export function NewsletterPopup() {
                 </button>
 
                 <div className="relative">
-                  {/* Icon */}
-                  <div className="w-12 h-12 mb-4 rounded-full bg-accent/20 flex items-center justify-center">
-                    <Sparkle size={24} className="text-accent animate-pulse" />
-                  </div>
-
                   {/* Title */}
                   <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                     Chcesz więcej?

@@ -9,7 +9,7 @@ export function Problems() {
         Czy Ty lub Twoi pracownicy codziennie...
       </SectionTitle>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
         {PROBLEMS.map((problem, index) => (
           <ProblemCard
             key={problem.id}

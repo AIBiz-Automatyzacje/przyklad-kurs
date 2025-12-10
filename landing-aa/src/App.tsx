@@ -6,6 +6,7 @@ import { Hero } from './features/hero'
 import { Problems } from './features/problems'
 import { Examples } from './features/examples'
 import { GettingStarted } from './features/getting-started'
+import { FAQ } from './features/faq'
 import { Community } from './features/community'
 import { HostingerModal } from './features/hostinger-modal'
 import { NewsletterPopup } from './features/newsletter-popup'
@@ -26,6 +27,7 @@ function App() {
         <Problems />
         <Examples />
         <GettingStarted />
+        <FAQ />
         <Community />
       </main>
 
