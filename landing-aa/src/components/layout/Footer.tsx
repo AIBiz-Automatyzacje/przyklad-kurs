@@ -94,6 +94,24 @@ export function Footer() {
 
           {/* Copyright */}
           <div className="mt-12 pt-8 border-t border-white/5 text-center">
+            <div className="flex justify-center gap-6 mb-4">
+              <a
+                href="https://app.easy.tools/policies/polityka-prywatnosci-73?lang=pl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-text-muted hover:text-accent transition-colors"
+              >
+                Polityka prywatności
+              </a>
+              <a
+                href="https://app.easy.tools/terms/polityka-prywatnosci-73?lang=pl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-text-muted hover:text-accent transition-colors"
+              >
+                Regulamin
+              </a>
+            </div>
             <p className="text-sm text-text-muted">
               © {new Date().getFullYear()} Akademia Automatyzacji. Wszelkie prawa
               zastrzeżone.
