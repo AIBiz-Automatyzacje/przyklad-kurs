@@ -43,7 +43,7 @@ export function Hero() {
             <span className="text-gradient">.</span>
             <br />
             <span className="text-accent">
-              Skup się na tym, co naprawdę rozwija Twój biznes.
+              Twórz workflow automation bez kodowania. Skup się na tym, co naprawdę rozwija Twój biznes.
             </span>
             <span className="text-accent animate-[blink_1s_step-end_infinite]">_</span>
           </motion.h1>
