@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const SYMBOLS = ['{', '}', '→', '⚡', '0', '1', '<', '>', '/']
+const SYMBOLS = ['{', '}', '→', '⚡', '0', '1', '<', '>', '/', '○', '●', '◇']
 
 interface Particle {
   id: number
@@ -23,13 +23,13 @@ export function Particles() {
     if (prefersReducedMotion) return
 
     // Create initial particles
-    const initialParticles: Particle[] = Array.from({ length: 15 }, (_, i) => ({
+    const initialParticles: Particle[] = Array.from({ length: 20 }, (_, i) => ({
       id: i,
       symbol: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)],
       left: Math.random() * 100,
-      size: Math.random() * 14 + 10,
-      duration: Math.random() * 10 + 15,
-      delay: Math.random() * 10,
+      size: Math.random() * 16 + 12,
+      duration: Math.random() * 12 + 12,
+      delay: Math.random() * 8,
     }))
 
     setParticles(initialParticles)

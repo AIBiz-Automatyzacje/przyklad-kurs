@@ -43,8 +43,9 @@
 /* === KEYFRAMES === */
 @keyframes float-up {
   0% { transform: translateY(0) rotate(0); opacity: 0; }
-  10% { opacity: 0.1; }
-  90% { opacity: 0.1; }
+  10% { opacity: 0.15; }
+  50% { opacity: 0.2; }
+  90% { opacity: 0.15; }
   100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
 

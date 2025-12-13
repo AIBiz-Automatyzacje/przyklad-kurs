@@ -39,8 +39,18 @@ export function Navbar() {
     }
   }, [isMobileMenuOpen])
 
-  const handleNavClick = () => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
     setIsMobileMenuOpen(false)
+
+    // Small delay to let menu close and body overflow reset
+    setTimeout(() => {
+      const targetId = href.replace('#', '')
+      const targetElement = document.getElementById(targetId)
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' })
+      }
+    }, 100)
   }
 
   return (
@@ -103,7 +113,7 @@ export function Navbar() {
                   <motion.a
                     key={link.id}
                     href={link.href}
-                    onClick={handleNavClick}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
