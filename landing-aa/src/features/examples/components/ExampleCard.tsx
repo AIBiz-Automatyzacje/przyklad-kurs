@@ -44,7 +44,7 @@ export function ExampleCard({
       {/* Visual */}
       <div className={reversed ? 'lg:order-1' : ''}>
         <VideoPlayer
-          thumbnailSrc={`/src/assets/images/${image}`}
+          thumbnailSrc={image}
           videoUrl={videoUrl}
           title={title}
         />

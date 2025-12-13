@@ -2,6 +2,15 @@ import { Section, SectionTitle } from '../../../components/layout'
 import { EXAMPLES } from '../../../lib/constants'
 import { ExampleCard } from './ExampleCard'
 
+// Import images for proper bundling
+import workflowAdsAnalysis from '../../../assets/images/workflow-ads-analysis.png'
+import workflowFbLeads from '../../../assets/images/workflow-fb-leads.png'
+
+const EXAMPLE_IMAGES: Record<string, string> = {
+  'workflow-ads-analysis.png': workflowAdsAnalysis,
+  'workflow-fb-leads.png': workflowFbLeads,
+}
+
 export function Examples() {
   return (
     <Section id="examples" variant="dark" withGrid>
@@ -15,7 +24,7 @@ export function Examples() {
             key={example.id}
             title={example.title}
             description={example.description}
-            image={example.image}
+            image={EXAMPLE_IMAGES[example.image]}
             videoUrl={example.videoUrl}
             comparison={example.comparison}
             index={index}
