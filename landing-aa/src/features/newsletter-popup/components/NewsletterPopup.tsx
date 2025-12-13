@@ -8,6 +8,7 @@ type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 export function NewsletterPopup() {
   const [isVisible, setIsVisible] = useState(false)
   const [email, setEmail] = useState('')
+  const [honeypot, setHoneypot] = useState('')
   const [status, setStatus] = useState<FormStatus>('idle')
 
   useEffect(() => {
@@ -46,18 +47,19 @@ export function NewsletterPopup() {
     setStatus('loading')
 
     try {
-      const webhookUrl = import.meta.env.VITE_NEWSLETTER_WEBHOOK
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          source: 'newsletter-popup',
+          timestamp: new Date().toISOString(),
+          honeypot,
+        }),
+      })
 
-      if (webhookUrl && webhookUrl !== 'placeholder_url') {
-        await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            source: 'newsletter-popup',
-            timestamp: new Date().toISOString(),
-          }),
-        })
+      if (!response.ok) {
+        throw new Error('Subscription failed')
       }
 
       setStatus('success')
@@ -145,6 +147,17 @@ export function NewsletterPopup() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-3">
+                      {/* Honeypot field - ukryty, boty go wypełniają */}
+                      <input
+                        type="text"
+                        name="honeypot"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                        className="absolute -left-[9999px]"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                      />
                       <Input
                         type="email"
                         placeholder="Twój adres email"
