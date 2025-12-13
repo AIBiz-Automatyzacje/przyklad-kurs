@@ -9,6 +9,7 @@ export function NewsletterPopup() {
   const [isVisible, setIsVisible] = useState(false)
   const [email, setEmail] = useState('')
   const [honeypot, setHoneypot] = useState('')
+  const [consent, setConsent] = useState(false)
   const [status, setStatus] = useState<FormStatus>('idle')
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export function NewsletterPopup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email || status === 'loading') return
+    if (!email || !consent || status === 'loading') return
 
     setStatus('loading')
 
@@ -166,10 +167,34 @@ export function NewsletterPopup() {
                         required
                         disabled={status === 'loading'}
                       />
+
+                      {/* Consent checkbox */}
+                      <label className="flex items-start gap-2 cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          checked={consent}
+                          onChange={(e) => setConsent(e.target.checked)}
+                          className="mt-0.5 w-4 h-4 rounded border-white/20 bg-white/5 text-accent focus:ring-accent focus:ring-offset-0 cursor-pointer"
+                          required
+                        />
+                        <span className="text-xs text-text-muted leading-tight group-hover:text-text-light transition-colors">
+                          Zapisując się, akceptuję{' '}
+                          <a
+                            href="https://app.easy.tools/policies/polityka-prywatnosci-73?lang=pl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent hover:underline"
+                          >
+                            politykę prywatności
+                          </a>{' '}
+                          i wyrażam zgodę na otrzymywanie materiałów marketingowych.
+                        </span>
+                      </label>
+
                       <Button
                         type="submit"
                         className="w-full"
-                        disabled={status === 'loading'}
+                        disabled={status === 'loading' || !consent}
                       >
                         {status === 'loading' ? (
                           'Wysyłanie...'
@@ -181,13 +206,6 @@ export function NewsletterPopup() {
                         )}
                       </Button>
                     </form>
-                  )}
-
-                  {/* Note */}
-                  {status === 'idle' && (
-                    <p className="mt-3 text-xs text-text-muted text-center">
-                      Zero spamu. Tylko wartościowe materiały.
-                    </p>
                   )}
                 </div>
               </div>
